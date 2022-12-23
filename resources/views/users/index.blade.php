@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Bem vindo</h1>
+    <a href="{{route('users.create')}}">Cadastrar Usuario</a>
     @foreach ($users as $user)
         <h3>Nome: {{$user->name}} ||  email: {{$user->email}}</h3>
         <a href="{{route('users.show', $user->id)}}">Ver Usuário</a>
