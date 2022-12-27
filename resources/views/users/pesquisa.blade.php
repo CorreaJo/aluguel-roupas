@@ -1,24 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuario nome</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('js/app.css')}}">
 </head>
-<body>
-    <h1>Bem vindo</h1>
-    <form action="{{route('logout')}}" method="post">
-        @csrf
-        <button>sair</button>
-    </form>
-    <form action="{{route('users.pesquisa')}}" method="post">
-        @csrf
-        <input type="text" name="pesquisa" placeholder="Pesquisar">
-        <button>Pesquisar</button>
-    </form>
+<body class="text-center">
+    <h1 class="mt-6 text-xl">Pesquisado por:</h1>
     <table class="min-w-full text-center">
         <thead class="border-b bg-gray-800">
             <tr>
