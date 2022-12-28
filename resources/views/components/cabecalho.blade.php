@@ -7,7 +7,7 @@
         <a href=""><img src="#" alt="">CordSistemas</a>
     </div>
     <div>
-        <a href="{{route('roupa.create', )}}" class="p-5 bg-slate-900 text-white rounded-lg">Cadastrar Roupas</a>
+         Dashboard
     </div>
     <div class="flex">
         <h3>{{Auth::user()->name}}</h3>

@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/loja{id}/roupa', [RoupasController::class, 'index'])->name('roupa.index');
     Route::get('/loja/{id}/roupa/create', [RoupasController::class, 'create'])->name('roupa.create');
+    Route::post('/loja/{id}/roupa', [RoupasController::class, 'store'])->name('roupa.store');
+    Route::get('/loja/{id}/roupa/{idRoupa}', [RoupasController::class, 'show'])->name('roupa.show');
 });
 
 require __DIR__.'/auth.php';

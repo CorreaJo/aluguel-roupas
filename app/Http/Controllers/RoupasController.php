@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\loja;
+use App\Models\{
+    loja,
+    roupa
+};
 use Illuminate\Http\Request;
 
 class RoupasController extends Controller
@@ -21,6 +24,27 @@ class RoupasController extends Controller
             return redirect()->back();
         }
 
-        return redirect()->route('roupa.create');
+        return view('loja.roupa.create', compact('loja'));
+    }
+
+    public function show($lojaId, $roupaId){
+        if(!$loja = Loja::find($lojaId)){
+            return redirect()->back();
+        }
+            
+        if(!$roupa = roupa::find($roupaId)){
+            return redirect()->back();
+        }
+            
+        return view('loja.roupa.show', compact('loja', 'roupa'));
+    }
+
+    public function store(Request $request, $lojaId){
+        if(!$loja = loja::find($lojaId)){
+            return redirect()->back();
+        }
+
+        $data = $request->all();
+        $data = roupa::create($data);
     }
 }

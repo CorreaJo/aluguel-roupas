@@ -8,6 +8,7 @@
 </head>
 <body>
     <x-cabecalho />
+    <a href="{{route('roupa.create', $loja->id)}}" class="p-5 bg-slate-900 text-white rounded-lg">Cadastrar Roupas</a>
     <table class="min-w-full text-center">
         <thead class="border-b bg-gray-800">
             <tr>
