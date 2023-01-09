@@ -6,6 +6,7 @@ use App\Models\{
     loja,
     roupa
 };
+use Illuminate\Cache\RedisTaggedCache;
 use Illuminate\Http\Request;
 
 class RoupasController extends Controller
@@ -39,12 +40,53 @@ class RoupasController extends Controller
         return view('loja.roupa.show', compact('loja', 'roupa'));
     }
 
-    public function store(Request $request, $lojaId){
+    public function store($lojaId, Request $request){
         if(!$loja = loja::find($lojaId)){
             return redirect()->back();
         }
 
-        $data = $request->all();
-        $data = roupa::create($data);
+        $loja->roupas()->create($request->all());
+        return redirect()->route('roupa.index', $loja->id);
+    }
+
+    public function delete($lojaId, $roupaId){
+        if(!$loja = loja::find($lojaId)){
+            return redirect()->back();
+        }
+
+        if(!$roupa = roupa::find($roupaId)){
+            return redirect()->back();
+        }
+
+        $roupa->delete();
+        return redirect()->route('roupa.index', $loja->id);
+    }
+
+    public function edit($lojaId, $roupaId){
+        if(!$loja = loja::find($lojaId)){
+            return redirect()->back();
+        }
+
+        if(!$roupa = roupa::find($roupaId)){
+            return redirect()->back();
+        }
+
+        return view('loja.roupa.edit', compact('loja', 'roupa'));
+
+    }
+
+    public function update($lojaId, $roupaId, Request $request){
+        if(!$loja = loja::find($lojaId)){
+            return redirect()->back();
+        }
+
+        if(!$roupa = roupa::find($roupaId)){
+            return redirect()->back();
+        }
+
+        $data = $request->only('nome', 'tipo', 'tamanho', 'preco');
+        $roupa->update($data);
+        
+        return view('loja.roupa.show', compact('loja', 'roupa'));
     }
 }

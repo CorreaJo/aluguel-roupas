@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/loja/{id}/roupa/create', [RoupasController::class, 'create'])->name('roupa.create');
     Route::post('/loja/{id}/roupa', [RoupasController::class, 'store'])->name('roupa.store');
     Route::get('/loja/{id}/roupa/{idRoupa}', [RoupasController::class, 'show'])->name('roupa.show');
+    Route::delete('/loja/{id}/roupa/{idRoupa}', [RoupasController::class, 'delete'])->name('roupa.delete');
+    Route::get('/loja/{id}/roupa/edit/{idRoupa}', [RoupasController::class, 'edit'])->name('roupa.edit');
+    Route::put('/loja/{id}/roupa/{idRoupa}', [RoupasController::class, 'update'])->name('roupa.update');
 });
 
 require __DIR__.'/auth.php';

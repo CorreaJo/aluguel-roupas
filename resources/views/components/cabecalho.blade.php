@@ -4,7 +4,7 @@
 
 <header class="h-16 flex justify-around items-center border-solid border border-black p-10">
     <div>
-        <a href=""><img src="#" alt="">CordSistemas</a>
+        <a href="{{route('users.index')}}"><img src="#" alt="">CordSistemas</a>
     </div>
     <div>
          Dashboard

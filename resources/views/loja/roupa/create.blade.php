@@ -7,15 +7,15 @@
     <title>Cadastrar Roupa</title>
 </head>
 <body>
-    <form action="#" method="post">
+    <form action="{{route('roupa.store', $loja->id)}}" method="post">
         @csrf
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome">
         <label for="tipo">Qual o tipo:</label>
         <select name="tipo" id="tipo">
             <option value="vestido">Vestido</option>
-            <option value="vestido">Terno</option>
-            <option value="vestido">Acessório</option>
+            <option value="terno">Terno</option>
+            <option value="acessorio">Acessório</option>
         </select>
         <label for="preco">Preço:</label>
         <input type="text" name="preco" id="preco" placeholder="Coloque só os números">
