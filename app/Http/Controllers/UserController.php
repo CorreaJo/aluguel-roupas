@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     public function index(){
+        return view('index');
+    }
+
+    public function indexUser(){
         $users = User::get();
         return view('users.index', compact('users'));
     }

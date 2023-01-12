@@ -41,6 +41,13 @@ class RoupasController extends Controller
     }
 
     public function store($lojaId, Request $request){
+
+        $request->validate([
+            'nome' => ['string', 'required', 'max:255'],
+            'codigo' => ['required', 'max:6'],
+            'tipo' => ['required', 'string']
+        ]);
+
         if(!$loja = loja::find($lojaId)){
             return redirect()->back();
         }

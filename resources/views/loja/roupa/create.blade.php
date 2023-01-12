@@ -1,28 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Roupa</title>
-</head>
-<body>
-    <form action="{{route('roupa.store', $loja->id)}}" method="post">
-        @csrf
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome">
-        <label for="tipo">Qual o tipo:</label>
-        <select name="tipo" id="tipo">
-            <option value="vestido">Vestido</option>
-            <option value="terno">Terno</option>
-            <option value="acessorio">Acessório</option>
-        </select>
-        <label for="preco">Preço:</label>
-        <input type="text" name="preco" id="preco" placeholder="Coloque só os números">
-        <label for="tamanho">Tamanho:</label>
-        <input type="text" name="tamanho">
-        <input type="hidden" value="{{$loja->id}}" name="loja_Id">
-        <button>Cadastrar</button>
-    </form>
-</body>
-</html>
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
+        </x-slot>
+
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        <form method="POST" action="{{ route('roupa.store', $loja->id) }}">
+            @csrf
+
+            <!-- Name -->
+            <div>
+                <x-label for="name" :value="__('Nome')" />
+
+                <x-input id="name" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus />
+            </div>
+
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-label for="codigo" :value="__('Código')" />
+
+                <x-input id="codigo" class="block mt-1 w-full" type="text" name="codigo" :value="old('codigo')" required />
+            </div>
+            <!-- tipo -->
+            <div class="mt-4">
+                <x-label for="tipo" :value="__('Tipo')" />
+
+                <select name="tipo" id="tipo" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
+                    <option value="" selected disabled>Selecione o tipo</option>
+                    <option value="vestido-noiva">Vestido Noiva</option>
+                    <option value="vestido-madrinha">Vestido Madrinha</option>
+                    <option value="vestido-daminha">Vestido Daminha</option>
+                    <option value="terno">Terno</option>
+                    <option value="acessorio">Acessório</option>
+                </select>
+            </div>
+
+            <input type="hidden" value="liberado" name="condicao">
+            <input type="hidden" value="{{$loja->id}}" name="loja_Id">
+
+            <div class="flex items-center justify-end mt-4">
+                <x-button class="ml-4">
+                    {{ __('Registrar') }}
+                </x-button>
+            </div>
+        </form>
+    </x-auth-card>
+</x-guest-layout>

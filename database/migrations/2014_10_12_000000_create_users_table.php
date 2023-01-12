@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('funcao')->nullable();
+            $table->foreignId('loja_Id')->constrained('lojas');
         });
     }
 

@@ -18,7 +18,8 @@ class UsersSeeder extends Seeder
             'name' => 'Joao',
             'email' => 'admin@admin.com',
             'password' => bcrypt('123456'),
-            'funcao' => 'admin'
+            'funcao' => 'admin',
+            'loja_id' => 1
         ]);
     }
 }

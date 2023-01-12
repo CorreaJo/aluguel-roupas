@@ -16,7 +16,6 @@
         <input type="text" name="pesquisa" placeholder="Pesquisar">
         <button>Pesquisar</button>
     </form>
-    <a href="{{route('loja.index')}}">Ver Lojas</a>
     <table class="min-w-full text-center">
         <thead class="border-b bg-gray-800">
             <tr>

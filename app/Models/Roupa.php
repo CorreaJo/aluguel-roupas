@@ -11,8 +11,8 @@ class roupa extends Model
 
     protected $fillable = [
         'nome',
-        'tamanho',
-        'preco',
+        'codigo',
+        'condicao',
         'tipo',
     ];
 

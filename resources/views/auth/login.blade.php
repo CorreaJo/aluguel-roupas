@@ -33,16 +33,11 @@
             </div>
 
             <!-- Remember Me -->
-            <div class="flex justify-around mt-4">
+            <div class="flex justify-between mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Lembre-me') }}</span>
                 </label>
-
-                <div><a href="{{ route('register') }}">Registrar</a></div>
-            </div>
-
-            <div class="flex items-center justify-center mt-4">
                 <x-button class="ml-3">
                     {{ __('Login') }}
                 </x-button>

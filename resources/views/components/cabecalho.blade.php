@@ -6,11 +6,15 @@
     <div>
         <a href="{{route('users.index')}}"><img src="#" alt="">CordSistemas</a>
     </div>
-    <div>
-         Dashboard
-    </div>
-    <div class="flex">
+    <div class="flex justify-around w-[30%]">
+        @if (Auth::user()->funcao === 'admin')
+            <a href="{{route('loja.index')}}">Ver Lojas</a>
+            <a href="{{route('users.index')}}">Ver Usuários</a>
+        @endif
         <h3>{{Auth::user()->name}}</h3>
-        <a href="{{route('logout')}}"><img class="w-6" src="{{asset('image/sair.png')}}" alt=""></a>
+        <form action="{{route('logout')}}" method="post">
+            @csrf
+            <button><img class="w-6" src="{{asset('image/sair.png')}}" alt=""></button>
+        </form>
     </div>
 </header>

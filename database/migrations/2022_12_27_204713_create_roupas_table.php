@@ -16,9 +16,10 @@ class CreateRoupasTable extends Migration
         Schema::create('roupas', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('tamanho')->nullable();
-            $table->float('preco')->nullable();
+            $table->string('codigo');
+            $table->string('condicao');
             $table->string('tipo');
+            $table->date('alugado')->nullable();
             $table->foreignId('loja_Id')->constrained('lojas');
             $table->timestamps();
         });

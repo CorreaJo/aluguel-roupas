@@ -13,7 +13,9 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function(){
 
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/pagina-principal', [UserController::class, 'index'])->name('index');
+
+    Route::get('/users', [UserController::class, 'indexUser'])->name('users.index');
     Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
     Route::delete('/users/{id}', [UserController::class, 'delete'])->name('users.delete');
     Route::get('users/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
