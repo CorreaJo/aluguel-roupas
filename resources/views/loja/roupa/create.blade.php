@@ -31,11 +31,11 @@
 
                 <select name="tipo" id="tipo" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
                     <option value="" selected disabled>Selecione o tipo</option>
-                    <option value="vestido-noiva">Vestido Noiva</option>
-                    <option value="vestido-madrinha">Vestido Madrinha</option>
-                    <option value="vestido-daminha">Vestido Daminha</option>
-                    <option value="terno">Terno</option>
-                    <option value="acessorio">Acessório</option>
+                    <option value="Vestido-Noiva">Vestido-Noiva</option>
+                    <option value="Vestido-Madrinha">Vestido-Madrinha</option>
+                    <option value="Vestido-Daminha">Vestido-Daminha</option>
+                    <option value="Terno">Terno</option>
+                    <option value="Acessorio">Acessorio</option>
                 </select>
             </div>
 

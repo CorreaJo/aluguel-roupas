@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function(){
     Route::delete('/loja/{id}/roupa/{idRoupa}', [RoupasController::class, 'delete'])->name('roupa.delete');
     Route::get('/loja/{id}/roupa/edit/{idRoupa}', [RoupasController::class, 'edit'])->name('roupa.edit');
     Route::put('/loja/{id}/roupa/{idRoupa}', [RoupasController::class, 'update'])->name('roupa.update');
+    Route::get('/pesquisa/loja{id}', [RoupasController::class, 'pesquisa'])->name('pesquisa');
+    
 });
 
 require __DIR__.'/auth.php';

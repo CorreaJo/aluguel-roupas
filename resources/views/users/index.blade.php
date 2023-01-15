@@ -10,14 +10,14 @@
 </head>
 <body>
     <x-cabecalho />
-    <h1 class="text-center text-3xl font-bold mt-5">Usuários</h1>
+    <h1 class="text-center text-3xl font-bold mt-5">Todos os Usuários</h1>
     <form action="{{route('users.pesquisa')}}" method="post">
         @csrf
         <input type="text" name="pesquisa" placeholder="Pesquisar">
         <button>Pesquisar</button>
     </form>
     <table class="min-w-full text-center">
-        <thead class="border-b bg-gray-800">
+        <thead class="border-b bg-cyan-900">
             <tr>
                 <th scope="col" class="text-sm font-medium text-white px-6 py-4">Nome</th>
                 <th scope="col" class="text-sm font-medium text-white px-6 py-4">Email</th>

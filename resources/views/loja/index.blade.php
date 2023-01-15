@@ -9,9 +9,12 @@
 <body>
     <x-cabecalho />
     
-    <a href="{{route('loja.create')}}">Criar Loja</a>
+    <div>
+        <a href="{{route('loja.create')}}">Criar Loja</a>
+        <h1 class="text-center text-3xl font-bold mt-5">Todas as Lojas</h1>
+    </div>
     <table class="min-w-full text-center">
-        <thead class="border-b bg-gray-800">
+        <thead class="border-b bg-cyan-900">
             <tr>
                 <th scope="col" class="text-sm font-medium text-white px-6 py-4">Nome</th>
                 <th scope="col" class="text-sm font-medium text-white px-6 py-4">Qtd de Email</th>
@@ -32,10 +35,9 @@
                     <form action="{{route('loja.delete', $loja->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <button>Deletar</button>
+                        <button><img src="{{asset('image/lixeira.png')}}" alt="">Deletar</button>
                     </form>
-                    <a href="{{route('loja.edit', $loja->id)}}">Editar</a>
-                    <a href="{{route('roupa.index', $loja->id)}}">Ver Roupas</a>
+                    <a href="{{route('loja.edit', $loja->id)}}"><img src="{{asset('image/refrescar.png')}}" alt="">Editar</a>
                 </td>
             </tr>
                 

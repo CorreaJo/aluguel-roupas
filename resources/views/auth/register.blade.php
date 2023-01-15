@@ -26,6 +26,19 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
+            <!-- Lojas -->
+            <div class="mt-4">
+                <x-label for="loja" :value="__('Lojas')" />
+
+
+                <select name="loja_Id" id="loja" class="block mt-1 w-full" required>
+                    <option value="" selected disabled>Selecione a Loja</option>
+                    @foreach ($lojas as $loja)
+                        <option value="{{$loja->id}}">{{$loja->nomeLoja}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Senha')" />
@@ -45,10 +58,9 @@
                                 name="password_confirmation" required />
             </div>
 
+            <input type="hidden" name="funcao" value="gerente">
+
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Já está registrado?') }}
-                </a>
 
                 <x-button class="ml-4">
                     {{ __('Registrar') }}

@@ -1,43 +1,73 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar {{$roupa->nome}}</title>
-</head>
-<body>
-    <form action="{{route('roupa.update', array('id'=>$loja->id, 'idRoupa'=> $roupa->id))}}" method="post">
-        @method('PUT')
-        @csrf
-        <label for="nome">Nome:</label>
-        <input type="text" name="nome" id="nome" value="{{$roupa->nome}}">
-        <label for="tipo">Qual o tipo:</label>
-        <select name="tipo" id="tipo">
-            @if ($roupa->tipo === 'vestido')
-                <option value="vestido" selected>Vestido</option>
-                <option value="terno">Terno</option>
-                <option value="acessorio">Acessório</option>
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
+        </x-slot>
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <form action="{{route('roupa.update', array('id'=>$loja->id, 'idRoupa'=> $roupa->id))}}" method="post">
+            @method('PUT')
+            @csrf
+            <!-- Name -->
+            <div>
+                <x-label for="name" :value="__('Nome')" />
 
-            @elseif ($roupa->tipo === 'terno')
-                <option value="vestido">Vestido</option>
-                <option value="terno" selected>Terno</option>
-                <option value="acessorio">Acessório</option>
-            
-            @elseif ($roupa->tipo === 'acessorio')
-                <option value="vestido">Vestido</option>
-                <option value="terno">Terno</option>
-                <option value="acessorio" selected>Acessório</option>
-            
-            @endif
-            
-        </select>
-        <label for="preco">Preço:</label>
-        <input type="text" name="preco" id="preco" placeholder="Coloque só os números" value="{{$roupa->preco}}">
-        <label for="tamanho">Tamanho:</label>
-        <input type="text" name="tamanho" value="{{$roupa->tamanho}}">
-        <input type="hidden" value="{{$loja->id}}" name="loja_Id">
-        <button>Editar</button>
-    </form>
-</body>
-</html>
+                <x-input id="name" class="block mt-1 w-full " type="text" name="nome" :value="old('nome')" value="{{$roupa->nome}}" required autofocus />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="codigo" :value="__('Código')" />
+
+                <x-input id="codigo" class="block mt-1 w-full" type="text" name="codigo" :value="old('codigo')" value="{{$roupa->codigo}}" required />
+            </div>
+            <div class="mt-4">
+                <x-label for="tipo" :value="__('Tipo')" />
+                <select name="tipo" id="tipo" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
+                    <option value="" disabled>Selecione o tipo</option>
+                    @if ($roupa->tipo === 'Vestido-Noiva')
+                        <option value="Vestido-Noiva" selected>Vestido-Noiva</option>
+                        <option value="Vestido-Madrinha">Vestido-Madrinha</option>
+                        <option value="Vestido-Daminha">Vestido-Daminha</option>
+                        <option value="Terno">Terno</option>
+                        <option value="Acessorio">Acessorio</option>
+                    @elseif ($roupa->tipo === 'Vestido-Madrinha')
+                        <option value="Vestido-Noiva">Vestido-Noiva</option>
+                        <option value="Vestido-Madrinha" selected>Vestido-Madrinha</option>
+                        <option value="Vestido-Daminha">Vestido-Daminha</option>
+                        <option value="Terno">Terno</option>
+                        <option value="Acessorio">Acessorio</option>
+                
+                    @elseif ($roupa->tipo === 'Vestido-Daminha')
+                        <option value="Vestido-Noiva">Vestido-Noiva</option>
+                        <option value="Vestido-Madrinha">Vestido-Madrinha</option>
+                        <option value="Vestido-Daminha" selected>Vestido-Daminha</option>
+                        <option value="Terno">Terno</option>
+                        <option value="Acessorio">Acessorio</option>
+                
+                    @elseif ($roupa->tipo === 'Terno')
+                        <option value="Vestido-Noiva">Vestido-Noiva</option>
+                        <option value="Vestido-Madrinha">Vestido-Madrinha</option>
+                        <option value="Vestido-Daminha">Vestido-Daminha</option>
+                        <option value="Terno" selected>Terno</option>
+                        <option value="Acessorio">Acessorio</option>
+                
+                    @elseif ($roupa->tipo === 'Acessorio')
+                        <option value="Vestido-Noiva">Vestido-Noiva</option>
+                        <option value="Vestido-Madrinha">Vestido-Madrinha</option>
+                        <option value="Vestido-Daminha">Vestido-Daminha</option>
+                        <option value="Terno">Terno</option>
+                        <option value="Acessorio" selected>Acessorio</option>
+                    @endif
+                
+                </select>
+            </div>
+            <input type="hidden" value="{{$loja->id}}" name="loja_Id">
+            <div class="flex items-center justify-center mt-4">
+                <x-button class="ml-4">
+                    {{ __('Editar') }}
+                </x-button>
+            </div>
+        </form>
+    </x-auth-card>
+</x-guest-layout>

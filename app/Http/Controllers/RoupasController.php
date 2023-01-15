@@ -96,4 +96,28 @@ class RoupasController extends Controller
         
         return view('loja.roupa.show', compact('loja', 'roupa'));
     }
+
+    public function pesquisa($lojaId, Request $request){
+        if(!$loja = loja::find($lojaId)){
+            return redirect()->back();
+        }
+
+        if($request->tipo_pesquisa === 'nome'){
+            $roupas = roupa::where([
+                ['nome','LIKE',"%{$request->pesquisa}%"],
+                ['loja_Id', '=', "$lojaId"]
+                ])->get();
+
+            return view('pesquisa', compact('roupas'));
+        }
+
+        if($request->tipo_pesquisa === 'codigo'){
+            $roupas = roupa::where([
+                ['codigo','LIKE',"%{$request->pesquisa}%"],
+                ['loja_Id', '=', "$lojaId"]
+                ])->get();
+
+            return view('pesquisa', compact('roupas'));
+        }
+    }
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
     <x-cabecalho />
-    <div class="flex flex-col items-center h-[90vh] w-1/2 m-auto bg-slate-500">
+    <div class="flex items-center justify-center h-[70vh] flex-col">
         <h1 class="text-center text-3xl font-semibold">Bem vindo  {{Auth::user()->name}}</h1>
         <x-pesquisa />
     </div>

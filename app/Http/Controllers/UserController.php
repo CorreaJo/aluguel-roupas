@@ -24,18 +24,6 @@ class UserController extends Controller
         return view('users.user', compact('user'));
     }
 
-    public function create(){
-        return view('users.create');
-    }
-
-    public function store(StoreUpdateUser $request){
-        $data = $request->all();
-        $data['password'] = bcrypt($request->password);
-        $data = User::create($data);
-
-        return redirect()->route('users.show', $data->id);
-    }
-
     public function edit($id){
         if(!$user = User::find($id))
             return redirect()->back();
