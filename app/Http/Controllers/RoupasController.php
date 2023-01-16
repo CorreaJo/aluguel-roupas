@@ -107,7 +107,6 @@ class RoupasController extends Controller
                 ['nome','LIKE',"%{$request->pesquisa}%"],
                 ['loja_Id', '=', "$lojaId"]
                 ])->get();
-
             return view('pesquisa', compact('roupas'));
         }
 

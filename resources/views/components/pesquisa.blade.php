@@ -1,7 +1,7 @@
 <div class="content">
     <form action="{{route('pesquisa', Auth::user()->loja_Id)}}" class="pesquisar">
         <div>
-            <input class="input-pesquisar" type="text" placeholder="Pesquisar por nome ou código">
+            <input class="input-pesquisar" type="text" placeholder="Pesquisar por nome ou código" name="pesquisa">
             <x-button>
                 Pesquisar
             </x-button>
@@ -48,11 +48,12 @@
         padding-left: 10px;
     }
     .cadastrar {
-        background-color: #164E63;
+        background-color: #ffc300;
         width: 100%;
         display: flex;
         padding: 10px;
         color: white;
+        font-weight: 600;
         border-radius: 5px;
         margin-left: 20px;
         justify-content: center;
@@ -64,6 +65,6 @@
     }
 
     .cadastrar:hover {
-        background-color:  #0891B2;
+        background-color:  #ffd60a;
     }
 </style>

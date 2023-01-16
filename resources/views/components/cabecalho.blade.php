@@ -2,9 +2,14 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 
-<header class="h-16 flex justify-around items-center  text-white p-10 bg-sky-900">
+<header class="h-16 flex justify-around items-center  text-white p-10 bg-[#62b6cb]">
     <div>
-        <a href="{{route('index')}}"><img src="#" alt="">CordSistemas</a>
+        <a href="{{route('index')}}">
+            <div class="flex w-1/2">
+                <img class="w-16" src="{{asset('image/logo2.png')}}" alt="">
+                <img class="w-1/2" src="{{asset('image/logo.png')}}" alt="">
+            </div>
+        </a>
     </div>
     <div class="flex justify-around w-[40%]">
         @if (Auth::user()->funcao === 'admin')
