@@ -56,12 +56,13 @@
         </div>
     </div>
 
+
     <div class="m-auto w-[50vw] mt-10 text-center">
         <button class="bg-[#ffc300] rounded-lg p-4 text-white font-semibold hover:bg-[#ffd60a] transition duration-0 hover:duration-500" id="form">Alugar para Data</button>
         <div id="formAtivo" class="hidden w-1/2 rounded-lg bg-[#62b6cb] m-auto p-5 mt-10">
             <h3 class="font-bold text-2xl">Alugar {{$roupa->nome}}</h3>
-            <form action="#" method="POST">
-
+            <form action="{{route('aluguel.store', $roupa->id)}}" method="POST">
+                @csrf
                 <x-label class="text-white text-left mt-6" for="nome" :value="__('Nome')" />
                 <x-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus/>
 
@@ -71,8 +72,32 @@
                 <x-label class="text-white text-left mt-6" for="data" :value="__('Data em que irá alugar')" />
                 <x-input id="data" class="block mt-1 w-full" type="date" name="data" :value="old('data')" required />
 
+                <input type="hidden" value="{{$roupa->id}}" name="roupa_id">
+
                 <x-button class="text-right mt-4">Alugar</x-button>
             </form>
+        </div>
+    </div>
+
+    <div class="w-[80vw] m-auto shadow-md rounded-xl shadow-gray-700">
+        <h2 class="font-bold text-center text-2xl mt-6">Todos as datas que está alugado</h2>
+        <div class="grid gap-x-8 gap-y-4 grid-cols-3">
+            @foreach ($alugueis as $aluguel)
+                <div class="p-6 bg-slate-500 m-5 w-[350px] rounded-lg">
+                    <div class="flex items-center mb-4 justify-center">
+                        <form  class="mr-2" action="{{route('aluguel.delete', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id, 'idAluguel' => $aluguel->id))}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class="rounded p-2 hover:bg-red-700 transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt=""></button>
+                        </form>
+                        <h3 class="font-semibold text-lg text-white text-center">{{$aluguel->nome}}</h3>
+                    </div>
+                    <x-label class="text-white" for="tel" :value="__('Telefone')" />
+                    <input class=" block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-sky-400 focus:ring focus:ring-sky-50 focus:ring-opacity-50" type="text" disabled value="{{$aluguel->telefone}}">
+                    <x-label for="tel" class="text-white" :value="__('Data que está alugado')" />
+                    <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-sky-400 focus:ring focus:ring-sky-50 focus:ring-opacity-50" type="text" disabled value="{{ \Carbon\Carbon::parse($aluguel->data)->format('d/m/Y')}}">
+                </div>
+            @endforeach
         </div>
     </div>
 </body>

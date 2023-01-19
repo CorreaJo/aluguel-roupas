@@ -56,6 +56,10 @@
         </div>
     </div>
 
+    <div>
+        <a href="{{route('aluguel.show', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}">Ver Datas que está alugado</a>
+    </div>
+
     <div class="m-auto w-[50vw] mt-10 text-center">
         <button class="bg-[#ffc300] rounded-lg p-4 text-white font-semibold hover:bg-[#ffd60a] transition duration-0 hover:duration-500" id="form">Alugar para Data</button>
         <div id="formAtivo" class="hidden w-1/2 rounded-lg bg-[#62b6cb] m-auto p-5 mt-10">
