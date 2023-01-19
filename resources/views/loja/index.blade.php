@@ -31,13 +31,13 @@
                     {{$loja->qtdEmail}}
                 </td>
                 
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    <form action="{{route('loja.delete', $loja->id)}}" method="POST">
+                <td class="flex justify-center px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <form class="mr-2" action="{{route('loja.delete', $loja->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <button><img src="{{asset('image/lixeira.png')}}" alt="">Deletar</button>
+                        <button class="flex items-center border rounded p-2 hover:bg-red-700 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt="">Deletar</button>
                     </form>
-                    <a href="{{route('loja.edit', $loja->id)}}"><img src="{{asset('image/refrescar.png')}}" alt="">Editar</a>
+                    <a class="flex items-center border rounded p-2 hover:bg-cyan-800 hover:text-white transition duration-0 hover:duration-500" href="{{route('loja.edit', $loja->id)}}"><img src="{{asset('image/refrescar.png')}}" alt="">Editar</a>
                 </td>
             </tr>
                 

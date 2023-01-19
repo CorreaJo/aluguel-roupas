@@ -60,8 +60,8 @@
         <button class="bg-[#ffc300] rounded-lg p-4 text-white font-semibold hover:bg-[#ffd60a] transition duration-0 hover:duration-500" id="form">Alugar para Data</button>
         <div id="formAtivo" class="hidden w-1/2 rounded-lg bg-[#62b6cb] m-auto p-5 mt-10">
             <h3 class="font-bold text-2xl">Alugar {{$roupa->nome}}</h3>
-            <form action="{{route('aluguel.store', $roupa->id)}}" method="POST">
-                @csrf
+            <form action="#" method="POST">
+
                 <x-label class="text-white text-left mt-6" for="nome" :value="__('Nome')" />
                 <x-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus/>
 
@@ -70,8 +70,6 @@
 
                 <x-label class="text-white text-left mt-6" for="data" :value="__('Data em que irá alugar')" />
                 <x-input id="data" class="block mt-1 w-full" type="date" name="data" :value="old('data')" required />
-
-                <input type="hidden" value="{{$roupa->id}}" name="roupa_id">
 
                 <x-button class="text-right mt-4">Alugar</x-button>
             </form>

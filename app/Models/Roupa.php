@@ -19,4 +19,8 @@ class roupa extends Model
     public function loja(){
         return $this->belongsTo(Loja::class);
     }
+
+    public function Alugar(){
+        return $this->hasMany(Alugar::class);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    AlugarController,
     LojaController,
     RoupasController,
     UserController
@@ -40,6 +41,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/loja/{id}/roupa/edit/{idRoupa}', [RoupasController::class, 'edit'])->name('roupa.edit');
     Route::put('/loja/{id}/roupa/{idRoupa}', [RoupasController::class, 'update'])->name('roupa.update');
     Route::get('/pesquisa/loja{id}', [RoupasController::class, 'pesquisa'])->name('pesquisa');
+
+    Route::post('/loja/roupa/{idRoupa}/criar-aluguel', [AlugarController::class, 'store'])->name('aluguel.store');
+    Route::get('/loja/{id}/roupa/{idRoupa}/aluguel{idAluguel}', [AlugarController::class, 'show'])->name('aluguel.show');
     
 });
 
