@@ -16,6 +16,12 @@
             $("#form").click(function (){
                 $("#formAtivo").show(500);
             });
+            $("#delete").click(function(){
+                $("#deleteAtivo").show(500);
+            });
+            $("#fechar").click(function(){
+                $("#deleteAtivo").hide(500);
+            });
         });
 
         
@@ -25,21 +31,26 @@
     <x-cabecalho />
     <div class="flex mt-4 p-4 w-full justify-between">
         <div class="flex">
-            <form  class="mr-2" action="{{route('roupa.delete', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" method="POST">
-                @method('DELETE')
-                @csrf
-                <button class="flex items-center border rounded p-2 hover:bg-red-700 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt="">Deletar</button>
-            </form>
+            <a id="delete" href="#" class="mr-4 flex items-center border rounded p-2 hover:bg-red-700 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt="">Deletar</a>
+            <div class="hidden w-[20vw] rounded-lg absolute bg-red-500 left-[40%] p-3" id="deleteAtivo">
+                <h2 class="text-center text-white font-semibold text-xl">Tem certeza que quer deletar?</h2>
+                <h4 class="text-white font-medium">OBS: Os aluguéis também irão se excluir</h4>
+                <div class="flex items-center justify-around m-auto mb-4 mt-4">
+                    <form  class="mr-2" action="{{route('roupa.delete', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="rounded pl-4 pr-4 bg-slate-800 text-white">Sim</button>
+                    </form>
+                    <a href="#" class=" rounded pl-4 pr-4 bg-slate-800 text-white" id="fechar">Não</a>
+                </div>
+                
+            </div>
+            
             <a href="{{route('roupa.edit', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" class="flex items-center border rounded p-2 hover:bg-cyan-800 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/refrescar.png')}}" alt="">Editar</a>
         </div>
-        @if (Auth::user()->funcao === 'Gerente' || Auth::user()->funcao === 'admin')
-            <div>
-                <a href="#" class="flex items-center border rounded p-2 hover:bg-red-700 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('images/lixeira.png')}}" alt="">Excluir Datas Alugadas</a>
-            </div>
-        @endif
     </div>
 
-    <div class="p-5 w-[70vw] m-auto rounded-lg shadow-md shadow-gray-700 mt-3">
+    <div class="p-5 w-[70vw] m-auto rounded-lg shadow-md shadow-gray-700 mt-3 bg-[#62b6cb]">
         <div class="flex justify-around">
             <h1 class="font-bold text-2xl">{{$roupa->nome}}</h1>
             <h3 class="font-semibold">{{$roupa->codigo}}</h3>
@@ -81,24 +92,30 @@
 
     <div class="w-[80vw] m-auto shadow-md rounded-xl shadow-gray-700">
         <h2 class="font-bold text-center text-2xl mt-6">Todos as datas que está alugado</h2>
-        <div class="grid gap-x-8 gap-y-4 grid-cols-3">
-            @foreach ($alugueis as $aluguel)
-                <div class="p-6 bg-slate-500 m-5 w-[350px] rounded-lg">
-                    <div class="flex items-center mb-4 justify-center">
-                        <form  class="mr-2" action="{{route('aluguel.delete', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id, 'idAluguel' => $aluguel->id))}}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button class="rounded p-2 hover:bg-red-700 transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt=""></button>
-                        </form>
-                        <h3 class="font-semibold text-lg text-white text-center">{{$aluguel->nome}}</h3>
+        @if ($alugueis->all())
+            <div class="grid gap-x-8 gap-y-4 grid-cols-3">
+                @foreach ($alugueis as $aluguel)
+                    <div class="p-6 bg-slate-500 m-5 w-[350px] rounded-lg">
+                        <div class="flex items-center mb-4 justify-center">
+                            <form  class="mr-2" action="{{route('aluguel.delete', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id, 'idAluguel' => $aluguel->id))}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="rounded p-2 hover:bg-red-700 transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt=""></button>
+                            </form>
+                            <h3 class="font-semibold text-lg text-white text-center">{{$aluguel->nome}}</h3>
+                        </div>
+                        <x-label class="text-white" for="tel" :value="__('Telefone')" />
+                        <input class=" block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-sky-400 focus:ring focus:ring-sky-50 focus:ring-opacity-50" type="text" disabled value="{{$aluguel->telefone}}">
+                        <x-label for="tel" class="text-white" :value="__('Data que está alugado')" />
+                        <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-sky-400 focus:ring focus:ring-sky-50 focus:ring-opacity-50" type="text" disabled value="{{ \Carbon\Carbon::parse($aluguel->data)->format('d/m/Y')}}">
                     </div>
-                    <x-label class="text-white" for="tel" :value="__('Telefone')" />
-                    <input class=" block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-sky-400 focus:ring focus:ring-sky-50 focus:ring-opacity-50" type="text" disabled value="{{$aluguel->telefone}}">
-                    <x-label for="tel" class="text-white" :value="__('Data que está alugado')" />
-                    <input class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-sky-400 focus:ring focus:ring-sky-50 focus:ring-opacity-50" type="text" disabled value="{{ \Carbon\Carbon::parse($aluguel->data)->format('d/m/Y')}}">
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+            
+        @else
+            <h3 class="text-center mt-5 text-xl font-semibold">Não Há Aluguéis</h3>
+        @endif
+        
     </div>
 </body>
 </html>

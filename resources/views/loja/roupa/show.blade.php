@@ -16,6 +16,12 @@
             $("#form").click(function (){
                 $("#formAtivo").show(500);
             });
+            $("#delete").click(function(){
+                $("#deleteAtivo").show(500);
+            });
+            $("#fechar").click(function(){
+                $("#deleteAtivo").hide(500);
+            });
         });
 
         
@@ -25,21 +31,28 @@
     <x-cabecalho />
     <div class="flex mt-4 p-4 w-full justify-between">
         <div class="flex">
-            <form  class="mr-2" action="{{route('roupa.delete', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" method="POST">
-                @method('DELETE')
-                @csrf
-                <button class="flex items-center border rounded p-2 hover:bg-red-700 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt="">Deletar</button>
-            </form>
+            <a id="delete" href="#" class="mr-4 flex items-center border rounded p-2 hover:bg-red-700 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt="">Deletar</a>
+            <div class="hidden w-[20vw] rounded-lg absolute bg-red-500 left-[40%] p-3" id="deleteAtivo">
+                <h2 class="text-center text-white font-semibold text-xl">Tem certeza que quer deletar?</h2>
+                <h4 class="text-white font-medium">OBS: Os aluguéis também irão se excluir</h4>
+                <div class="flex items-center justify-around m-auto mb-4 mt-4">
+                    <form  class="mr-2" action="{{route('roupa.delete', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button class="rounded pl-4 pr-4 bg-slate-800 text-white">Sim</button>
+                    </form>
+                    <a href="#" class=" rounded pl-4 pr-4 bg-slate-800 text-white" id="fechar">Não</a>
+                </div>
+                
+            </div>
             <a href="{{route('roupa.edit', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" class="flex items-center border rounded p-2 hover:bg-cyan-800 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/refrescar.png')}}" alt="">Editar</a>
         </div>
-        @if (Auth::user()->funcao === 'Gerente' || Auth::user()->funcao === 'admin')
             <div>
-                <a href="#" class="flex items-center border rounded p-2 hover:bg-red-700 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('images/lixeira.png')}}" alt="">Excluir Datas Alugadas</a>
+                <a href="{{route('aluguel.show', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" class="flex items-center border rounded p-2 hover:bg-slate-700 hover:text-white transition duration-0 hover:duration-500">Ver Datas Que Está Alugado</a>
             </div>
-        @endif
     </div>
 
-    <div class="p-5 w-[70vw] m-auto rounded-lg shadow-md shadow-gray-700 mt-3">
+    <div class="p-5 w-[70vw] m-auto rounded-lg shadow-md shadow-gray-700 mt-3 bg-[#62b6cb]">
         <div class="flex justify-around">
             <h1 class="font-bold text-2xl">{{$roupa->nome}}</h1>
             <h3 class="font-semibold">{{$roupa->codigo}}</h3>
@@ -54,10 +67,6 @@
                 <h3 id="condicao">{{$roupa->condicao}}</h3>
             </div>
         </div>
-    </div>
-
-    <div>
-        <a href="{{route('aluguel.show', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}">Ver Datas que está alugado</a>
     </div>
 
     <div class="m-auto w-[50vw] mt-10 text-center">

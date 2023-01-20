@@ -64,15 +64,4 @@ class AlugarController extends Controller
         return view('loja.roupa.aluguel.show', compact('roupa', 'loja', 'alugueis'));
     }
 
-    public function deleteAutomatico(){
-        $data = Carbon::now('America/Sao_Paulo')->subDay(2);
-        $alugueis = DB::table('alugars')->get();
-        foreach ($alugueis as $aluguel){
-           $dia = Carbon::parse($aluguel->data)->format('d');
-           if($dia === $data){
-                $aluguel->delete($aluguel->id);
-           }
-        }
-    }
-
 }

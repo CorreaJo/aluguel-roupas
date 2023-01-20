@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,7 +17,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('deletarAutomaticamente')->everyMinute();
+        $schedule->call(function(){
+            $data = Carbon::now('America/Sao_Paulo')->subDay(2);
+            $alugueis = DB::table('alugars')->get();
+            foreach ($alugueis as $aluguel){
+                $dia = Carbon::parse($aluguel->data)->format('d');
+            
+                if($dia == $data->day){
+                    DB::table('alugars')->where('id', $aluguel->id)->delete();
+                }
+            }
+        })->daily();
     }
 
     /**

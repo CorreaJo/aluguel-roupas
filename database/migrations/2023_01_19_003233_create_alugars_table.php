@@ -18,7 +18,7 @@ class CreateAlugarsTable extends Migration
             $table->string('nome');
             $table->string('telefone');
             $table->date('data');
-            $table->foreignId('roupa_id')->constrained('roupas');
+            $table->foreignId('roupa_id')->constrained('roupas')->onDelete('cascade');
             $table->timestamps();
         });
     }
