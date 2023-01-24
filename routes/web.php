@@ -27,7 +27,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/loja', [LojaController::class, 'index'])->name('loja.index');
     Route::get('/loja/create', [LojaController::class, 'create'])->name('loja.create');
     Route::post('/loja', [LojaController::class, 'store'])->name('loja.store');
-    Route::get('/loja/{id}', [LojaController::class, 'show'])->name('loja.show');
     Route::delete('/loja/{id}', [LojaController::class, 'delete'])->name('loja.delete');
     Route::get('/loja/edit/{id}', [LojaController::class, 'edit'])->name('loja.edit');
     Route::put('/loja/{id}', [LojaController::class, 'update'])->name('loja.update');

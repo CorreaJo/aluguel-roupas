@@ -18,12 +18,6 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-    public function show($id){
-        if(!$user = User::find($id))
-            return redirect()->back();
-        return view('users.user', compact('user'));
-    }
-
     public function edit($id){
         if(!$user = User::find($id))
             return redirect()->back();

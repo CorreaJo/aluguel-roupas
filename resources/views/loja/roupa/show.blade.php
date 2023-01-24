@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{$roupa->nome}}: {{$loja->nomeLoja}}</title>
+    <link rel="shortcut icon" href="{{asset('image/favicon.ico')}}" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
         var condicao =  document.getElementById("condicao");
@@ -34,16 +35,15 @@
             <a id="delete" href="#" class="mr-4 flex items-center border rounded p-2 hover:bg-red-700 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/lixeira.png')}}" alt="">Deletar</a>
             <div class="hidden w-[20vw] rounded-lg absolute bg-red-500 left-[40%] p-3" id="deleteAtivo">
                 <h2 class="text-center text-white font-semibold text-xl">Tem certeza que quer deletar?</h2>
-                <h4 class="text-white font-medium">OBS: Os aluguéis também irão se excluir</h4>
                 <div class="flex items-center justify-around m-auto mb-4 mt-4">
                     <form  class="mr-2" action="{{route('roupa.delete', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <button class="rounded pl-4 pr-4 bg-slate-800 text-white">Sim</button>
+                        <button class="rounded pl-6 pr-6 bg-slate-800 text-white">Sim</button>
                     </form>
-                    <a href="#" class=" rounded pl-4 pr-4 bg-slate-800 text-white" id="fechar">Não</a>
+                    <a href="#" class=" rounded pl-6 pr-6 bg-slate-800 text-white" id="fechar">Não</a>
                 </div>
-                
+                <h4 class="text-white font-medium">OBS: Os aluguéis também irão se excluir</h4>
             </div>
             <a href="{{route('roupa.edit', array('id'=>Auth::user()->loja_Id, 'idRoupa'=> $roupa->id))}}" class="flex items-center border rounded p-2 hover:bg-cyan-800 hover:text-white transition duration-0 hover:duration-500"><img src="{{asset('image/refrescar.png')}}" alt="">Editar</a>
         </div>

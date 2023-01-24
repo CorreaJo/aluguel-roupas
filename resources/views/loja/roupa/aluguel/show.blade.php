@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{$roupa->nome}}: {{$loja->nomeLoja}}</title>
+    <link rel="shortcut icon" href="{{asset('image/favicon.ico')}}" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
         var condicao =  document.getElementById("condicao");
-        if(!condicao === 'liberado'){
+        if(condicao != 'liberado'){
             condicao.style.backgroundColor = "#B91C1C";
         }
 
@@ -61,8 +62,8 @@
                 <x-label for="cpf" :value="__('Tipo')" />
                 <input class="rounded-md shadow-sm border-gray-300 focus:border-sky-400 focus:ring focus:ring-sky-50 focus:ring-opacity-50" type="text" disabled value="{{$roupa->tipo}}">
             </div>
-            <div class="p-2 pr-4 pl-4 bg-green-600 text-white rounded">
-                <h3 id="condicao">{{$roupa->condicao}}</h3>
+            <div>
+                <h3 id="condicao" class="bg-green-600 p-2 pr-4 pl-4 text-white rounded">{{$roupa->condicao}}</h3>
             </div>
         </div>
     </div>

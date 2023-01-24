@@ -1,3 +1,7 @@
+<head>
+    <title>Editar {{$roupa->nome}}</title>
+    <link rel="shortcut icon" href="{{asset('image/favicon.ico')}}" type="image/x-icon">
+</head>
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">

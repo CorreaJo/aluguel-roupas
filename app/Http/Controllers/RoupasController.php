@@ -6,7 +6,6 @@ use App\Models\{
     loja,
     roupa
 };
-use Illuminate\Cache\RedisTaggedCache;
 use Illuminate\Http\Request;
 
 class RoupasController extends Controller
@@ -53,7 +52,7 @@ class RoupasController extends Controller
         }
 
         $loja->roupas()->create($request->all());
-        return redirect()->route('roupa.index', $loja->id);
+        return redirect()->route('index');
     }
 
     public function delete($lojaId, $roupaId){

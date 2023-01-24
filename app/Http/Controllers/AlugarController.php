@@ -6,6 +6,7 @@ use App\Models\Alugar;
 use App\Models\loja;
 use App\Models\roupa;
 use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +40,22 @@ class AlugarController extends Controller
         }
 
         $alugueis = Alugar::where('roupa_id', '=', "$idRoupa")->get();
+
+        $hoje = Carbon::now(new DateTimeZone('America/Sao_Paulo'));
+        $perto = $hoje->subDays(5);
+        $passou = $hoje->addDays(5);
+        foreach ($alugueis as $aluguel){
+            $dia = Carbon::parse($aluguel->data)->format('d');
+            if($dia == $perto->day){    
+                $condicao = "Alugado";
+                roupa::where('id', $idRoupa)->update(['condicao' => $condicao]);
+            } else if ($dia == $passou->day){
+                $condicao = "Liberado";
+                roupa::where('id', $idRoupa)->update(['condicao' => $condicao]);
+            }
+        }
+
+        
 
         return view('loja.roupa.aluguel.show', compact('roupa', 'loja', 'alugueis'));
     }

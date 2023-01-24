@@ -24,12 +24,6 @@ class LojaController extends Controller
         return redirect()->route('loja.show', $data->id);
     }
 
-    public function show($id){
-        if(!$loja = Loja::find($id))
-            return redirect()->back();
-        return view('loja.show', compact('loja'));
-    }
-
     public function delete($id){
         if(!$loja = Loja::find($id))
             return redirect()->route('loja.index');

@@ -2,13 +2,10 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 
-<header class="h-16 flex justify-around items-center  text-white p-10 bg-[#62b6cb]">
+<header class="flex justify-around items-center text-white bg-[#62b6cb] p-2">
     <div>
         <a href="{{route('index')}}">
-            <div class="flex w-1/2">
-                <img class="w-16" src="{{asset('image/logo2.png')}}" alt="">
-                <img class="w-1/2" src="{{asset('image/logo.png')}}" alt="">
-            </div>
+            <img class="w-1/2" src="{{asset('image/logoCortada.png')}}" alt="">
         </a>
     </div>
     <div class="flex justify-around w-[40%]">
