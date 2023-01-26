@@ -8,12 +8,12 @@
     <link rel="shortcut icon" href="{{asset('image/favicon.ico')}}" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
-        var condicao =  document.getElementById("condicao");
-        if(condicao != 'liberado'){
-            condicao.style.backgroundColor = "#B91C1C";
-        }
-
+        
         $(document).ready(function(){
+            var text = $('#condicao').text();
+            if (text != 'Liberado'){
+                $('#condicao').css("background-color", "red");
+            }   
             $("#form").click(function (){
                 $("#formAtivo").show(500);
             });

@@ -31,7 +31,7 @@
                 <x-label for="loja" :value="__('Lojas')" />
 
 
-                <select name="loja_Id" id="loja" class="block mt-1 w-full" required>
+                <select name="loja_Id" id="loja" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-sky-400 focus:ring focus:ring-sky-50 focus:ring-opacity-50" required>
                     <option value="" selected disabled>Selecione a Loja</option>
                     @foreach ($lojas as $loja)
                         <option value="{{$loja->id}}">{{$loja->nomeLoja}}</option>

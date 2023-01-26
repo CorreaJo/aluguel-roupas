@@ -6,7 +6,9 @@ use App\Models\{
     loja,
     roupa
 };
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoupasController extends Controller
 {
@@ -99,6 +101,16 @@ class RoupasController extends Controller
     public function pesquisa($lojaId, Request $request){
         if(!$loja = loja::find($lojaId)){
             return redirect()->back();
+        }
+
+        $data = Carbon::now('America/Sao_Paulo')->addDay(2);
+        $alugueis = DB::table('alugars')->get();
+        foreach ($alugueis as $aluguel){
+            $dia = Carbon::parse($aluguel->data)->format('d');
+        
+            if($dia <= $data->day){
+                DB::table('alugars')->where('id', $aluguel->id)->delete();
+            }
         }
 
         if($request->tipo_pesquisa === 'nome'){

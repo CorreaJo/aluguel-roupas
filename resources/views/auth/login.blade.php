@@ -44,7 +44,7 @@
                     <span class="ml-2 text-sm text-gray-600">{{ __('Lembre-me') }}</span>
                 </label>
                 <x-button class="ml-3">
-                    {{ __('Login') }}
+                    {{ __('Entrar') }}
                 </x-button>
             </div>
         </form>

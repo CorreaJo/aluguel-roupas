@@ -17,17 +17,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function(){
-            $data = Carbon::now('America/Sao_Paulo')->subDay(2);
-            $alugueis = DB::table('alugars')->get();
-            foreach ($alugueis as $aluguel){
-                $dia = Carbon::parse($aluguel->data)->format('d');
-            
-                if($dia == $data->day){
-                    DB::table('alugars')->where('id', $aluguel->id)->delete();
-                }
-            }
-        })->daily();
     }
 
     /**
