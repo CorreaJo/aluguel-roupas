@@ -46,10 +46,10 @@ class AlugarController extends Controller
         $passou = $hoje->addDays(5);
         foreach ($alugueis as $aluguel){
             $dia = Carbon::parse($aluguel->data)->format('d');
-            if($dia == $perto->day){    
+            if($dia >= $perto->day && $dia <= $passou->day){    
                 $condicao = "Alugado";
                 roupa::where('id', $idRoupa)->update(['condicao' => $condicao]);
-            } else if ($dia == $passou->day){
+            } else if ($dia >= $passou->day){
                 $condicao = "Liberado";
                 roupa::where('id', $idRoupa)->update(['condicao' => $condicao]);
             }

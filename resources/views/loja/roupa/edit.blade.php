@@ -4,11 +4,10 @@
 </head>
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            <a class="flex items-center pb-3" href="{{route('index')}}">
+                <img src="{{asset('image/botao-voltar.png')}}" alt="">
+                Voltar
             </a>
-        </x-slot>
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         <form action="{{route('roupa.update', array('id'=>$loja->id, 'idRoupa'=> $roupa->id))}}" method="post">
             @method('PUT')
@@ -29,37 +28,37 @@
                 <x-label for="tipo" :value="__('Tipo')" />
                 <select name="tipo" id="tipo" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 block mt-1 w-full">
                     <option value="" disabled>Selecione o tipo</option>
-                    @if ($roupa->tipo === 'Vestido-Noiva')
-                        <option value="Vestido-Noiva" selected>Vestido-Noiva</option>
-                        <option value="Vestido-Madrinha">Vestido-Madrinha</option>
-                        <option value="Vestido-Daminha">Vestido-Daminha</option>
+                    @if ($roupa->tipo === 'Vestido Noiva')
+                        <option value="Vestido Noiva" selected>Vestido Noiva</option>
+                        <option value="Vestido Madrinha">Vestido Madrinha</option>
+                        <option value="Vestido Daminha">Vestido Daminha</option>
                         <option value="Terno">Terno</option>
                         <option value="Acessorio">Acessorio</option>
-                    @elseif ($roupa->tipo === 'Vestido-Madrinha')
-                        <option value="Vestido-Noiva">Vestido-Noiva</option>
-                        <option value="Vestido-Madrinha" selected>Vestido-Madrinha</option>
-                        <option value="Vestido-Daminha">Vestido-Daminha</option>
+                    @elseif ($roupa->tipo === 'Vestido Madrinha')
+                        <option value="Vestido Noiva">Vestido Noiva</option>
+                        <option value="Vestido Madrinha" selected>Vestido Madrinha</option>
+                        <option value="Vestido Daminha">Vestido Daminha</option>
                         <option value="Terno">Terno</option>
                         <option value="Acessorio">Acessorio</option>
                 
-                    @elseif ($roupa->tipo === 'Vestido-Daminha')
-                        <option value="Vestido-Noiva">Vestido-Noiva</option>
-                        <option value="Vestido-Madrinha">Vestido-Madrinha</option>
-                        <option value="Vestido-Daminha" selected>Vestido-Daminha</option>
+                    @elseif ($roupa->tipo === 'Vestido Daminha')
+                        <option value="Vestido Noiva">Vestido Noiva</option>
+                        <option value="Vestido Madrinha">Vestido Madrinha</option>
+                        <option value="Vestido Daminha" selected>Vestido Daminha</option>
                         <option value="Terno">Terno</option>
                         <option value="Acessorio">Acessorio</option>
                 
                     @elseif ($roupa->tipo === 'Terno')
-                        <option value="Vestido-Noiva">Vestido-Noiva</option>
-                        <option value="Vestido-Madrinha">Vestido-Madrinha</option>
-                        <option value="Vestido-Daminha">Vestido-Daminha</option>
+                        <option value="Vestido Noiva">Vestido Noiva</option>
+                        <option value="Vestido Madrinha">Vestido Madrinha</option>
+                        <option value="Vestido Daminha">Vestido Daminha</option>
                         <option value="Terno" selected>Terno</option>
                         <option value="Acessorio">Acessorio</option>
                 
                     @elseif ($roupa->tipo === 'Acessorio')
-                        <option value="Vestido-Noiva">Vestido-Noiva</option>
-                        <option value="Vestido-Madrinha">Vestido-Madrinha</option>
-                        <option value="Vestido-Daminha">Vestido-Daminha</option>
+                        <option value="Vestido Noiva">Vestido Noiva</option>
+                        <option value="Vestido Madrinha">Vestido Madrinha</option>
+                        <option value="Vestido Daminha">Vestido Daminha</option>
                         <option value="Terno">Terno</option>
                         <option value="Acessorio" selected>Acessorio</option>
                     @endif

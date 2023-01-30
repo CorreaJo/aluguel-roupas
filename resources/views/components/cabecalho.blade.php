@@ -12,7 +12,6 @@
         @if (Auth::user()->funcao === 'admin')
             <a href="{{route('loja.index')}}">Ver Lojas</a>
             <a href="{{route('users.index')}}">Ver Usuários</a>
-            <a href="{{route('register')}}">Cadastrar Usuário</a>
         @endif
         <a href="{{route('roupa.index', Auth::user()->loja_Id)}}">Ver roupas cadastradas</a>
         <h3>{{Auth::user()->name}}</h3>

@@ -5,11 +5,10 @@
 
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo />
+            <a class="flex items-center pb-3" href="{{route('index')}}">
+                <img src="{{asset('image/botao-voltar.png')}}" alt="">
+                Voltar
             </a>
-        </x-slot>
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />

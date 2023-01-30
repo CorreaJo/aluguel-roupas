@@ -12,6 +12,7 @@
 <body>
     <x-cabecalho />
     <div class="flex items-center justify-center p-5 bg-cyan-900">
+        <a class="p-2 text-white rounded bg-[#ffc300] font-semibold mr-4" href="{{route('register')}}">Cadastrar Usuário</a>
         <h1 class="text-center text-3xl font-bold text-white mr-4">Todos os Usuários</h1>
         <form action="{{route('users.pesquisa')}}" method="post">
             @csrf

@@ -92,7 +92,7 @@ class RoupasController extends Controller
             return redirect()->back();
         }
 
-        $data = $request->only('nome', 'tipo', 'tamanho', 'preco');
+        $data = $request->only('nome', 'tipo', 'codigo');
         $roupa->update($data);
         
         return view('loja.roupa.show', compact('loja', 'roupa'));
@@ -103,7 +103,7 @@ class RoupasController extends Controller
             return redirect()->back();
         }
 
-        $data = Carbon::now('America/Sao_Paulo')->addDay(2);
+        $data = Carbon::now('America/Sao_Paulo')->subDay(2);
         $alugueis = DB::table('alugars')->get();
         foreach ($alugueis as $aluguel){
             $dia = Carbon::parse($aluguel->data)->format('d');

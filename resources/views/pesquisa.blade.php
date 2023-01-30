@@ -11,9 +11,9 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
         $(document).ready(function(){
-            var text = $('#condicao').text();
+            var text = $('.condicao').text();
             if (text != 'Liberado'){
-                $('#condicao').css("background-color", "red");
+                $('.condicao').css("background-color", "red");
             }
         });
     </script>
@@ -38,7 +38,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-700">{{$roupa->tipo}}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$roupa->codigo}}</td>
                             <td class="flex justify-center px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                <div id="condicao" class="p-2 bg-green-500 text-white rounded w-1/2">
+                                <div class="p-2 bg-green-500 text-white rounded w-1/2 condicao">
                                     {{$roupa->condicao}}
                                 </div>
                             </td>
